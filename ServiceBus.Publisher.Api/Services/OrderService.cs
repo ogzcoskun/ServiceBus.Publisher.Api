@@ -36,6 +36,7 @@ namespace ServiceBus.Publisher.Api.Services
                 ///Publish Message on ServiceBus
                 var messageBody = JsonConvert.SerializeObject(order);
                 var message = new Message(Encoding.UTF8.GetBytes(messageBody));
+                message.TimeToLive = TimeSpan.FromSeconds(3);
                 await queueClient.SendAsync(message);
                 ///Publish Message on ServiceBus
 
